@@ -33,3 +33,14 @@ main {
 
    cursor: not-allowed;
 }
+
+.result {
+    padding: 10px 0px;
+
+    font-size: 1.4rem;
+    font-weight: bolder;
+}
+
+.result span {
+    font-weight: normal;
+}

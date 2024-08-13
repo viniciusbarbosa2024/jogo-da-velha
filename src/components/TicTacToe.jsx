@@ -4,6 +4,8 @@ import './TicTacToe.css'
 export const TicTacToe = () => {
     const [position,setPosition] = useState(Array(9).fill('')) //Anotar sobre o .fill e sobre a declaração de array
 
+    const [result,setResult] = useState('')
+
     //Atualizar estado da posição
     function updatePosition(numberOfPlays,positionCopy,index) {
             if (numberOfPlays%2 == 0) {
@@ -38,15 +40,18 @@ export const TicTacToe = () => {
 
     //Verificar se as posições jogadas retornam um vencedor do jogo
     function checkPlayedPositions(positionsToWin,X_positions,O_positions) {
+        let result = ''
         positionsToWin.forEach((winningSequence) => {
 
             if (checkWinningSequence(winningSequence,X_positions) === true) {
-                return alert('x ganhou')
+                result = 'X ganhou'
             } else if (checkWinningSequence(winningSequence,O_positions) === true) {
-                return alert('O ganhou')
+                result = 'O ganhou'
             }
 
        })
+
+       return result
     }
 
     function checkWinner(positionCopy){
@@ -70,7 +75,7 @@ export const TicTacToe = () => {
         let X_positions = getPositions(positionCopy,'X')
         let O_positions = getPositions(positionCopy,'O')
 
-        checkPlayedPositions(positionsToWin,X_positions,O_positions)
+        return checkPlayedPositions(positionsToWin,X_positions,O_positions)
        
     }
     
@@ -85,7 +90,9 @@ export const TicTacToe = () => {
         } else {
             //Verificar o funcionamento da renderização a partir do setPosition nesse caso
             updatePosition(numberOfPlays,positionCopy,index) 
-            checkWinner(positionCopy)   
+
+            let winner = checkWinner(positionCopy)
+            winner != '' ? setResult(winner):false
         }
 
     }
@@ -93,14 +100,17 @@ export const TicTacToe = () => {
     
   
     return (
-    <main>
-        {position.map((element,index)=> {
-            return (
-                <div key={index} className={`position ${element}`} onClick={() => generalFunction(index)}>
-                    
-                </div> //Anotar sobre o key
-            )
-        })}
-    </main>
+    <div>
+        <main>
+            {position.map((element,index)=> {
+                return (
+                    <div key={index} className={`position ${element}`} onClick={() => generalFunction(index)}>
+        
+                    </div> //Anotar sobre o key
+                )
+            })}
+        </main>
+        <div className='result'>Resultado: <span>{result}</span></div>
+    </div>
   )
 }
