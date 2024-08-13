@@ -15,6 +15,19 @@ export const TicTacToe = () => {
             }
         
     }
+
+    function checkWinner(positionCopy){
+       let X_positions = []
+       let O_positions = []
+       for (let pos =0;pos< positionCopy.length;pos++) {
+        if (positionCopy[pos] === 'X') {
+            X_positions.push(pos)
+        } else if (positionCopy[pos] === 'O'){
+            O_positions.push(pos)
+        }
+       }
+
+    }
     
     function generalFunction(index) {
         let numberOfPlays = position.filter((element)=> element === 'X' || element==="O").length
@@ -25,7 +38,9 @@ export const TicTacToe = () => {
         if (positionCopy[index] === 'X' || positionCopy[index] === 'O') {
             return
         } else {
-            updatePosition(numberOfPlays,positionCopy,index)    
+            //Verificar o funcionamento da renderização a partir do setPosition nesse caso
+            updatePosition(numberOfPlays,positionCopy,index) 
+            checkWinner(positionCopy)   
         }
 
     }
