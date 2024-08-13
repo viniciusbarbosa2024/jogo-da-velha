@@ -28,13 +28,21 @@ export const TicTacToe = () => {
         return positions
     }
 
+    //Verificar se dada sequência vencedora está contida no array das posições jogadas por determinado jogador
+    function checkWinningSequence(winningSequence,positionsPlayed) {
+        return (
+            winningSequence.every((element) => positionsPlayed.indexOf(element) != -1)
+        )
+        //Anotar sobre a igualdade de arrays e sobre o .every 
+    }
+
     //Verificar se as posições jogadas retornam um vencedor do jogo
     function checkPlayedPositions(positionsToWin,X_positions,O_positions) {
-        positionsToWin.forEach((winningStreak) => {
+        positionsToWin.forEach((winningSequence) => {
 
-            if (winningStreak.every((element) => X_positions.indexOf(element) != -1) === true) {
+            if (checkWinningSequence(winningSequence,X_positions) === true) {
                 return alert('x ganhou')
-            } else if (winningStreak.every((element) => O_positions.indexOf(element) != -1) === true) {
+            } else if (checkWinningSequence(winningSequence,O_positions) === true) {
                 return alert('O ganhou')
             }
 
