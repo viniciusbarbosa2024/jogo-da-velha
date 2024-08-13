@@ -2,8 +2,25 @@ import {useState} from 'react'
 import './TicTacToe.css'
 
 export const TicTacToe = () => {
-    const [position,setPosition] = useState(Array(9).fill('')) //Anotar sobre o .fill
+    const [position,setPosition] = useState(Array(9).fill('')) //Anotar sobre o .fill e sobre a declaração de array
 
+    function updatePosition(numberOfPlays,positionCopy,index) {
+        //Validar se a posição clicada está disponível
+        if (positionCopy[index] === '') {
+            //Atualizar posição clicada
+            if (numberOfPlays%2 == 0) {
+                positionCopy[index] = 'X'
+                setPosition(positionCopy)
+            } else {
+                positionCopy[index] = 'O'
+                setPosition(positionCopy)
+            }
+        } else {
+            return
+        }
+        
+    }
+    
     function generalFunction(index) {
         let numberOfPlays = position.filter((element)=> element === 'X' || element==="O").length
 
@@ -13,15 +30,7 @@ export const TicTacToe = () => {
 
     }
 
-    function updatePosition(numberOfPlays,positionCopy,index) {
-        if (numberOfPlays%2 == 0) {
-            positionCopy[index] = 'X'
-            setPosition(positionCopy)
-        } else {
-            positionCopy[index] = 'O'
-            setPosition(positionCopy)
-        }
-    }
+    
   
     return (
     <main>
