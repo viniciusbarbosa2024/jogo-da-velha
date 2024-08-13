@@ -10,6 +10,7 @@ main {
     flex-basis: 33.3%;
 
     border: 1px solid black;
+    cursor: pointer;
     
     background-color: aquamarine;
 }
@@ -20,6 +21,8 @@ main {
    background-size: 40%;
    background-repeat: no-repeat;
    background-position: center;
+
+   cursor: not-allowed;
 }
 
 .O {
@@ -27,4 +30,6 @@ main {
    background-size: 40%;
    background-repeat: no-repeat;
    background-position: center;
+
+   cursor: not-allowed;
 }

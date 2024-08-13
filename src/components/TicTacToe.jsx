@@ -4,10 +4,8 @@ import './TicTacToe.css'
 export const TicTacToe = () => {
     const [position,setPosition] = useState(Array(9).fill('')) //Anotar sobre o .fill e sobre a declaração de array
 
+    //Atualizar estado da posição
     function updatePosition(numberOfPlays,positionCopy,index) {
-        //Validar se a posição clicada está disponível
-        if (positionCopy[index] === '') {
-            //Atualizar posição clicada
             if (numberOfPlays%2 == 0) {
                 positionCopy[index] = 'X'
                 setPosition(positionCopy)
@@ -15,9 +13,6 @@ export const TicTacToe = () => {
                 positionCopy[index] = 'O'
                 setPosition(positionCopy)
             }
-        } else {
-            return
-        }
         
     }
     
@@ -26,7 +21,12 @@ export const TicTacToe = () => {
 
         let positionCopy = [...position]
 
-        updatePosition(numberOfPlays,positionCopy,index)
+        //Validar se a posição está disponível
+        if (positionCopy[index] === 'X' || positionCopy[index] === 'O') {
+            return
+        } else {
+            updatePosition(numberOfPlays,positionCopy,index)    
+        }
 
     }
 
