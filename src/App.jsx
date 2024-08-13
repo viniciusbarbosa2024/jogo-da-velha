@@ -1,7 +1,14 @@
 import React from 'react'
+import './App.css'
+import { TicTacToe } from './components/TicTacToe'
 
-export const App = () => {
+const App = () => {
   return (
-    <div>App</div>
+    <div>
+      <h1>Jogo da velha</h1>
+      <TicTacToe/>
+    </div>
   )
 }
+
+export default App
