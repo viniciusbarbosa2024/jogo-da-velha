@@ -54,6 +54,7 @@ export const TicTacToe = () => {
        return result
     }
 
+    //Verificar vencedor do jogo
     function checkWinner(positionCopy){
         //Arrays com sequência de posições que posibilitam a vitória
         let positionsToWin = [
@@ -78,6 +79,29 @@ export const TicTacToe = () => {
         return checkPlayedPositions(positionsToWin,X_positions,O_positions)
        
     }
+
+    //Verificar empate
+    function checkDraw(positionCopy) {
+        if(positionCopy.indexOf('') != -1){
+            return
+        } else {
+            return 'Empate'
+        }
+    }
+
+    //Verificar resultado do jogo
+    function checkResult(positionCopy) {
+        let verifier = checkWinner(positionCopy)
+
+        if ( verifier != '') {
+            verifier != '' ? setResult(verifier):false
+        } else {
+            verifier = checkDraw(positionCopy)
+            verifier === 'Empate' ? setResult(verifier):false
+        }
+
+
+    }
     
     function generalFunction(index) {
         let numberOfPlays = position.filter((element)=> element === 'X' || element==="O").length
@@ -91,8 +115,7 @@ export const TicTacToe = () => {
             //Verificar o funcionamento da renderização a partir do setPosition nesse caso
             updatePosition(numberOfPlays,positionCopy,index) 
 
-            let winner = checkWinner(positionCopy)
-            winner != '' ? setResult(winner):false
+            checkResult(positionCopy)
         }
 
     }
