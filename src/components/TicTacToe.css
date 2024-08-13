@@ -13,3 +13,18 @@ main {
     
     background-color: aquamarine;
 }
+
+
+.X {
+   background-image: url('https://cdn-icons-png.flaticon.com/512/75/75519.png');
+   background-size: 40%;
+   background-repeat: no-repeat;
+   background-position: center;
+}
+
+.O {
+    background-image: url('https://cdn-icons-png.flaticon.com/512/274/274355.png');
+   background-size: 40%;
+   background-repeat: no-repeat;
+   background-position: center;
+}

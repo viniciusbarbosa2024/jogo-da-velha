@@ -23,7 +23,7 @@ export const TicTacToe = () => {
     <main>
         {position.map((element,index)=> {
             return (
-                <div key={index} className='position' onClick={() => updatePosition(index)}>
+                <div key={index} className={`position ${element}`} onClick={() => updatePosition(index)}>
                     
                 </div>
             )
