@@ -11,8 +11,6 @@ main {
 
     border: 1px solid black;
     cursor: pointer;
-    
-    background-color: aquamarine;
 }
 
 
@@ -21,6 +19,7 @@ main {
    background-size: 40%;
    background-repeat: no-repeat;
    background-position: center;
+   background-color: aqua;
 
    cursor: not-allowed;
 }
@@ -30,6 +29,7 @@ main {
    background-size: 40%;
    background-repeat: no-repeat;
    background-position: center;
+   background-color: coral;
 
    cursor: not-allowed;
 }
