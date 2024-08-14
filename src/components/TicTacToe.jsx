@@ -2,9 +2,14 @@ import {useState} from 'react'
 import './TicTacToe.css'
 
 export const TicTacToe = () => {
+    //Refere-se ao status de cada posição (Vazia,X,O)
     const [position,setPosition] = useState(Array(9).fill('')) //Anotar sobre o .fill e sobre a declaração de array
 
+    //Refere-se ao resultado do jogo
     const [result,setResult] = useState('')
+
+    //Refere-se a tríade de posições que fez o jogo ter um vencedor
+    const [winningTriad,setWinningTriad] = useState([])
 
     //Atualizar estado da posição
     function updatePosition(numberOfPlays,positionCopy,index) {
@@ -44,8 +49,10 @@ export const TicTacToe = () => {
         positionsToWin.forEach((winningSequence) => {
 
             if (checkWinningSequence(winningSequence,X_positions) === true) {
+                setWinningTriad(winningSequence)
                 result = 'X ganhou'
             } else if (checkWinningSequence(winningSequence,O_positions) === true) {
+                setWinningTriad(winningSequence)
                 result = 'O ganhou'
             }
 
@@ -105,10 +112,12 @@ export const TicTacToe = () => {
 
     //Reinicia jogo
     function restart() {
+        setWinningTriad([])
         setPosition(Array(9).fill(''))
         setResult('')
     }
 
+    //Verifica se a posição clicada está ocupada ou não
     function PositionAvailability(positionCopy,index) {
         if (positionCopy[index] === 'X' || positionCopy[index] === 'O') {
             return false
@@ -117,6 +126,7 @@ export const TicTacToe = () => {
         }
     }
 
+    //Verifica se o jogo acabou
     function gameOver() {
         if (result != '') {
             return true
@@ -125,6 +135,7 @@ export const TicTacToe = () => {
         }
     }
 
+    //Verifica se a jogada é válida ou não
     function validatePlay(positionCopy,index) {
         if (PositionAvailability(positionCopy,index) == false || gameOver() == true) {
             return 'Invalid play'
@@ -133,6 +144,15 @@ export const TicTacToe = () => {
         }
     }
     
+    //Estiliza a tríade de posições que gerou a vitória de determinado jogador
+    function stylizeWinningTriad(index,winningTriad) {
+        if (winningTriad.indexOf(index) != -1) {
+            return 'winningTriad'
+        } else {
+            return ''
+        }
+    }
+
     function generalFunction(index) {
         let numberOfPlays = position.filter((element)=> element === 'X' || element==="O").length
 
@@ -157,7 +177,7 @@ export const TicTacToe = () => {
         <main>
             {position.map((element,index)=> {
                 return (
-                    <div key={index} className={`position ${element}`} onClick={() => generalFunction(index)}>
+                    <div key={index} className={`position ${element} ${stylizeWinningTriad(index,winningTriad)}`} onClick={() => generalFunction(index)}>
         
                     </div> //Anotar sobre o key
                 )
