@@ -44,3 +44,13 @@ main {
 .result span {
     font-weight: normal;
 }
+
+.restart {
+    display: block;
+
+    padding: 10px;
+    margin: auto;
+
+    font-weight: bolder;
+    font-size: 1em;
+}

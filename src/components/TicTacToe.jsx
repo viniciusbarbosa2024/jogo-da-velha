@@ -102,6 +102,11 @@ export const TicTacToe = () => {
 
 
     }
+
+    function restart() {
+        setPosition(Array(9).fill(''))
+        setResult('')
+    }
     
     function generalFunction(index) {
         let numberOfPlays = position.filter((element)=> element === 'X' || element==="O").length
@@ -133,7 +138,12 @@ export const TicTacToe = () => {
                 )
             })}
         </main>
-        <div className='result'>Resultado: <span>{result}</span></div>
+
+        <div className='result'>
+            Resultado: <span>{result}</span>
+        </div>
+
+        <button className='restart' onClick={restart}>Reiniciar</button>
     </div>
   )
 }
