@@ -101,10 +101,15 @@ export const TicTacToe = () => {
         let verifier = checkWinner(positionCopy)
 
         if ( verifier != '') {
-            verifier != '' ? setResult(verifier):false
+            //verifier != '' ? setResult(verifier):false
+            return verifier
         } else {
             verifier = checkDraw(positionCopy)
-            verifier === 'Empate' ? setResult(verifier):false
+            if (verifier === 'Empate') {
+                return verifier
+            } else {
+                return 'Jogo em andamento'
+            }
         }
 
 
@@ -165,7 +170,15 @@ export const TicTacToe = () => {
             //Verificar o funcionamento da renderização a partir do setPosition nesse caso
             updatePosition(numberOfPlays,positionCopy,index) 
 
-            checkResult(positionCopy)
+            //checkResult(positionCopy)
+            let checkResultReturn = checkResult(positionCopy)
+            switch (checkResultReturn) {
+                case 'Jogo em andamento':
+                    return 
+                default:
+                    setResult(checkResultReturn)
+                    break
+            }
         }
 
     }
