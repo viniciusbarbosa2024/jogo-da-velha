@@ -103,9 +103,34 @@ export const TicTacToe = () => {
 
     }
 
+    //Reinicia jogo
     function restart() {
         setPosition(Array(9).fill(''))
         setResult('')
+    }
+
+    function PositionAvailability(positionCopy,index) {
+        if (positionCopy[index] === 'X' || positionCopy[index] === 'O') {
+            return false
+        } else {
+            return true
+        }
+    }
+
+    function gameOver() {
+        if (result != '') {
+            return true
+        } else {
+            return false
+        }
+    }
+
+    function validatePlay(positionCopy,index) {
+        if (PositionAvailability(positionCopy,index) == false || gameOver() == true) {
+            return 'Invalid play'
+        } else {
+            return 'Valid play'
+        }
     }
     
     function generalFunction(index) {
@@ -114,7 +139,7 @@ export const TicTacToe = () => {
         let positionCopy = [...position]
 
         //Validar se a posição está disponível
-        if (positionCopy[index] === 'X' || positionCopy[index] === 'O') {
+        if (validatePlay(positionCopy,index) == 'Invalid play') {
             return
         } else {
             //Verificar o funcionamento da renderização a partir do setPosition nesse caso
