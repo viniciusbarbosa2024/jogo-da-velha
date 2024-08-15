@@ -11,7 +11,7 @@ export const TicTacToe = () => {
     //Refere-se a tríade de posições que fez o jogo ter um vencedor
     const [winningTriad,setWinningTriad] = useState([])
     
-
+    //Refere-se ao status do jogo(Em andamento ou terminado)
     const [gameStatus,setGameStatus] = useState('Em andamento')
 
     //Atualizar estado da posição
@@ -177,7 +177,7 @@ export const TicTacToe = () => {
             //Verificar o funcionamento da renderização a partir do setPosition nesse caso
             updatePosition(numberOfPlays,positionCopy,index) 
 
-            //checkResult(positionCopy)
+            //Verificação de status e de resultado do jogo 
             let checkResultReturn = checkResult(positionCopy)
             switch (checkResultReturn) {
                 case 'Jogo em andamento':
