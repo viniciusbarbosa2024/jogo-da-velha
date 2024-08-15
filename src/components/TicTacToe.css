@@ -58,3 +58,8 @@ main {
 .winningTriad {
     background-color: greenyellow;
 }
+
+.unavailablePosition {
+    cursor: not-allowed;
+    opacity: 0.8;
+}

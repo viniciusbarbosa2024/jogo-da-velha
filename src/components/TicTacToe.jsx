@@ -10,6 +10,9 @@ export const TicTacToe = () => {
 
     //Refere-se a tríade de posições que fez o jogo ter um vencedor
     const [winningTriad,setWinningTriad] = useState([])
+    
+
+    const [gameStatus,setGameStatus] = useState('Em andamento')
 
     //Atualizar estado da posição
     function updatePosition(numberOfPlays,positionCopy,index) {
@@ -101,7 +104,6 @@ export const TicTacToe = () => {
         let verifier = checkWinner(positionCopy)
 
         if ( verifier != '') {
-            //verifier != '' ? setResult(verifier):false
             return verifier
         } else {
             verifier = checkDraw(positionCopy)
@@ -117,6 +119,7 @@ export const TicTacToe = () => {
 
     //Reinicia jogo
     function restart() {
+        setGameStatus('Em Andamento')
         setWinningTriad([])
         setPosition(Array(9).fill(''))
         setResult('')
@@ -148,15 +151,19 @@ export const TicTacToe = () => {
             return 'Valid play'
         }
     }
-    
-    //Estiliza a tríade de posições que gerou a vitória de determinado jogador
-    function stylizeWinningTriad(index,winningTriad) {
-        if (winningTriad.indexOf(index) != -1) {
-            return 'winningTriad'
-        } else {
+
+    //Atualizar estilos das posições após término do jogo
+    function postGameEndStyling(index,winningTriad) {
+        if (gameStatus == 'Em andamento') {
             return ''
+        } else if(gameStatus == 'Terminado') {
+            if (winningTriad.indexOf(index) != -1) {
+                return 'winningTriad'
+            } else {
+                return 'unavailablePosition'
+            }
         }
-    }
+    } 
 
     function generalFunction(index) {
         let numberOfPlays = position.filter((element)=> element === 'X' || element==="O").length
@@ -176,6 +183,7 @@ export const TicTacToe = () => {
                 case 'Jogo em andamento':
                     return 
                 default:
+                    setGameStatus('Terminado')
                     setResult(checkResultReturn)
                     break
             }
@@ -190,7 +198,7 @@ export const TicTacToe = () => {
         <main>
             {position.map((element,index)=> {
                 return (
-                    <div key={index} className={`position ${element} ${stylizeWinningTriad(index,winningTriad)}`} onClick={() => generalFunction(index)}>
+                    <div key={index} className={`position ${element} ${postGameEndStyling(index,winningTriad)}`} onClick={() => generalFunction(index)}>
         
                     </div> //Anotar sobre o key
                 )
